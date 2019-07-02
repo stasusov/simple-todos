@@ -1,0 +1,28 @@
+<template name="task">
+    <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+        <input type="checkbox" checked="{{checked}}" id="checkbox_{{_id}}" class="toggle-checked"/>
+        {{#if isOwner}}
+            <button class="toggle-private">
+                {{#if private}}
+                    Make public
+                {{else}}
+                    Make private
+                {{/if}}
+            </button>
+        {{/if}}
+        <label for="checkbox_{{_id}}" class="text">
+            <span>
+                <strong>{{username}}</strong> - {{text}}
+            </span>
+            {{#if dueDate}}
+                <span><strong>Due date</strong>: {{dueDate}}</span>
+            {{/if}}
+            {{#if notDefaultPriority }}
+                <span><strong>Priority</strong>: {{priority}}</span>
+            {{/if}}
+        </label>
+        {{#if isOwner}}
+            <button class="delete">&times;</button>
+        {{/if}}
+    </li>
+</template>

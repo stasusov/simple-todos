@@ -1,0 +1,51 @@
+<body>
+<div class="container">
+    <header>
+        <h1>
+            Todo List
+            {{#if incompleteCount}}
+                ({{incompleteCount}})
+            {{else}}
+                &#10004;
+            {{/if}}
+        </h1>
+
+        <div class="actions">
+            <label for="sort">Sort by: </label>
+            <select id="sort" class="sort" name="sort">
+                <option value="createdAt">Created at</option>
+                <option value="text">Name</option>
+                <option value="priority">Priority</option>
+                <option value="dueDate">Due date</option>
+            </select>
+
+            <label class="hide-completed">
+                <input type="checkbox"/>
+                Hide Completed Tasks
+            </label>
+        </div>
+
+        {{> loginButtons}}
+
+        {{#if currentUser}}
+            <form class="new-task">
+                <label for="new_task_input">New task:</label>
+                <input type="text" name="text" id="new_task_input" placeholder="Type to add new tasks"/>
+                <input type="text" name="dueDate" placeholder="Due date" />
+                <div class="priority">
+                    !
+                    <input type="range" name="priority" min="1" max="5" value="1" class="slider">
+                    !!!!!
+                </div>
+                <button type="submit">Add</button>
+            </form>
+        {{/if}}
+    </header>
+
+    <ul>
+        {{#each tasks }}
+            {{> task}}
+        {{/each}}
+    </ul>
+</div>
+</body>
